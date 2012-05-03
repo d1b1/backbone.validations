@@ -44,6 +44,13 @@ var validators = {
   },
 
   "email" : function(type, attributeName, model, valueToSet) {
+
+    // Kick out of the validation pattern when the value is empty. 
+    // Assumes the 'required': true will ensure required is enforced.
+    if (_.isString(valueToSet) && valueToSet.length == 0) {
+      return;
+    }
+
     var emailRegex = new RegExp("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?");
 
     if (_.isString(valueToSet) && !valueToSet.match(emailRegex)) {
@@ -52,6 +59,13 @@ var validators = {
   },
 
   "url" : function(type, attributeName, model, valueToSet) {
+
+    // Kick out of the validation pattern when the value is empty. 
+    // Assumes the 'required': true will ensure required is enforced.
+    if (_.isString(valueToSet) && valueToSet.length == 0) {
+      return;
+    }
+
     // taken from jQuery UI validation
     var urlRegex = /^(https?|ftp):\/\/(((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:)*@)?(((\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5]))|((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?)(:\d*)?)(\/((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)+(\/(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)*)*)?)?(\?((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|[\uE000-\uF8FF]|\/|\?)*)?(\#((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|\/|\?)*)?$/i;
     if (_.isString(valueToSet) && !valueToSet.match(urlRegex)) {
@@ -64,6 +78,13 @@ var validators = {
   },
 
   "pattern" : function(pattern, attributeName, model, valueToSet) {
+
+    // Kick out of the validation pattern when the value is empty. 
+    // Assumes the 'required': true will ensure required is enforced.
+    if (_.isString(valueToSet) && valueToSet.length == 0) {
+      return;
+    }
+
     if (_.isString(valueToSet)) {
       if (pattern.test(valueToSet)) {
         return false;
